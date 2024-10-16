@@ -102,4 +102,37 @@
   font-size: 0.875rem; 
   margin-top: 5px;     
 }
+.password-wrapper {
+  position: relative;
+}
 
+.eye-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.toaster {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #4caf50; /* Success */
+  color: white;
+  font-size: 16px;
+  z-index: 1000;
+  opacity: 0.9;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toaster.error {
+  background-color: #f44336; /* Error */
+}
+
+.toaster.success {
+  background-color: #4caf50; /* Success */
+}

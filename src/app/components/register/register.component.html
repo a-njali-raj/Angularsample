@@ -1,117 +1,167 @@
-<div class="container mt-3">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header text-center">
-          <h3>Register</h3>
+<div class="container">
+  <div class="form-card">
+    <div class="form-header">
+      <h3>Register</h3>
+    </div>
+    <div class="form-body">
+      <form #registerForm="ngForm" novalidate>
+
+     
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" [(ngModel)]="user.firstName" name="firstName"#firstName="ngModel" placeholder="Enter first name" minlength="4"pattern="^[a-zA-Z]+$"required>
+            <div class="error-message" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+              <div *ngIf="firstName.errors?.['required']">First name is required.</div>
+              <div *ngIf="firstName.errors?.['minlength']">First name must be at least 4 characters long.</div>
+              <div *ngIf="firstName.errors?.['pattern']">First name must contain only letters.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" [(ngModel)]="user.lastName" name="lastName"#lastName="ngModel" placeholder="Enter last name" minlength="4"pattern="^[a-zA-Z]+$">
+          <div class="error-message" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+            <div *ngIf="lastName.errors?.['minlength']">First name must be at least 4 characters long.</div>
+            <div *ngIf="lastName.errors?.['pattern']">First name must contain only letters.</div>
+          </div>
+          </div>
+          </div>
+    
+
+    
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" [(ngModel)]="user.email" name="email" #email="ngModel"placeholder="Enter email" required pattern="^(?!.*\.\.)[a-zA-Z0-9._%-]+@[a-zA-Z]+(\.[a-zA-Z]{2,})+$">
+            <div class="error-message" *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['pattern']">Please enter a valid email address.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" [(ngModel)]="user.phone" name="phone"#phone="ngModel" placeholder="Enter phone number"pattern="^\d{10}$" required>
+            <div class="error-message" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+              <div *ngIf="phone.errors?.['required']">Phone number is required.</div>
+              <div *ngIf="phone.errors?.['pattern']">Phone number must be exactly 10 digits.</div>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <form>
-            <!-- First Name and Last Name in horizontal alignment -->
-            <div class="row mb-3">
-              <div class="col">
-                <label for="fname" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="fname" placeholder="Enter first name" required>
-              </div>
-              <div class="col">
-                <label for="lname" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lname" placeholder="Enter last name" required>
-              </div>
-            </div>
 
-            <!-- Email and Phone Number in horizontal alignment -->
-            <div class="row mb-3">
-              <div class="col">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
-              </div>
-              <div class="col">
-                <label for="phonenumber" class="form-label">Phone Number</label>
-                <input type="tel" class="form-control" id="phonenumber" placeholder="Enter phone number" required>
-              </div>
-            </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" [(ngModel)]="user.dob" name="dob" required>
+        </div>
 
-            <!-- Date of Birth -->
-            <div class="mb-3">
-              <label for="dob" class="form-label">Date of Birth</label>
-              <input type="date" class="form-control" id="dob" required>
+      
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" [(ngModel)]="user.address" name="address"#address="ngModel" placeholder="Enter address" pattern="^[A-Za-z][A-Za-z0-9 ]{0,20}[0-9]{0,4}$"required>
+          <div class="error-message" *ngIf="address.invalid && (address.dirty || address.touched)">
+          <div *ngIf="address.errors?.['required']">Address is required.</div>
+          <div *ngIf="address.errors?.['pattern']">Address must start with a letter, allow up to 4 digits, and allow up to 5 spaces </div>
+        </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" [(ngModel)]="user.city" name="city"#city="ngModel" placeholder="Enter city"pattern="^[A-Za-z]+( [A-Za-z]+){0,2}$" required>
+            <div class="error-message" *ngIf="city.invalid && (city.dirty || city.touched)">
+              <div *ngIf="city.errors?.['required']">City is required.</div>
+              <div *ngIf="city.errors?.['pattern']">City can only contain letters and up to 2 spaces</div>
             </div>
+          </div>
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" id="state" [(ngModel)]="user.state" name="state"#state="ngModel" placeholder="Enter state"pattern="^[A-Za-z]+( [A-Za-z]+){0,2}$"  required>
+            <div class="error-message" *ngIf="state.invalid && (state.dirty || state.touched)">
+              <div *ngIf="state.errors?.['required']">state is required.</div>
+              <div *ngIf="state.errors?.['pattern']">State can only contain letters and up to 2 spaces</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="postalCode">Postal Code</label>
+            <input type="text" id="postalCode" [(ngModel)]="user.postalCode" name="postalCode"#postalcode="ngModel" placeholder="Enter postal code"pattern="^\d{6}$" required>
+            <div class="error-message" *ngIf="postalcode.invalid && (postalcode.dirty || postalcode.touched)">
+              <div *ngIf="postalcode.errors?.['required']">Postal Code is required.</div>
+              <div *ngIf="postalcode.errors?.['pattern']">Postal Code must be exactly 6 digits.</div>
+            </div>
+          </div>
+        </div>
 
-            <!-- Address, City, State in horizontal alignment -->
-            <div class="mb-3">
-              <label for="addressLine" class="form-label">Address</label>
-              <input type="text" class="form-control" id="addressLine" placeholder="Enter address" required>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="YearOrGradeLevel">Grade/Year Level</label>
+            <input type="text" id="YearOrGradeLevel" [(ngModel)]="user.gradeOrYearLevel" name="gradeOrYearLevel"#gradeOrYearLevel="ngModel" placeholder="Enter your Grade or Year Level" required pattern="^(Grade|Year) [0-9]{1,2}$">
+         <div class="error-message" *ngIf="gradeOrYearLevel.invalid && (gradeOrYearLevel.dirty||gradeOrYearLevel.touched)">
+          <div *ngIf="gradeOrYearLevel.errors?.['required']">gradeOrYearLevel is required.</div>
+          <div *ngIf="gradeOrYearLevel.errors?.['pattern']">Grade or year level must be in format 'Grade X' or 'Year Y'.</div>
+        </div> 
+        </div>
+          <div class="form-group">
+            <label for="gpaScore">GPA Score</label>
+            <input type="number" step="0.01" id="gpaScore" [(ngModel)]="user.gpaScore" name="gpaScore" #gpaScore="ngModel" placeholder="Enter GPA score" required pattern="^(0(\.\d+)?|[0-3](\.\d+)?|4(\.0+)?)$">
+            <div class="error-message" *ngIf="gpaScore.invalid && (gpaScore.dirty || gpaScore.touched)">
+              <div *ngIf="gpaScore.errors?.['required']">GPA Score is required.</div>
+              <div *ngIf="gpaScore.errors?.['pattern']">Invalid GPA score. Must be between 0.0 and 4.0.</div>
             </div>
-            <div class="row mb-3">
-              <div class="col">
-                <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" id="city" placeholder="Enter city" required>
-              </div>
-              <div class="col">
-                <label for="state" class="form-label">State</label>
-                <input type="text" class="form-control" id="state" placeholder="Enter state" required>
-              </div>
-              <div class="col">
-                <label for="postalCode" class="form-label">Postal Code</label>
-                <input type="text" class="form-control" id="postalCode" placeholder="Enter postal code" required>
-              </div>
-            </div>
-
-            <!-- Grade/Year Level and GPA Score in horizontal alignment -->
-            <div class="row mb-3">
-              <div class="col">
-                <label for="gradeOrYearLevel" class="form-label">Grade/Year Level</label>
-                <input type="text" class="form-control" id="gradeOrYearLevel" placeholder="Enter grade/year level" required>
-              </div>
-              <div class="col">
-                <label for="gpaScore" class="form-label">GPA Score</label>
-                <input type="number" step="0.01" class="form-control" id="gpaScore" placeholder="Enter GPA score" required>
-              </div>
-            </div>
-
-            <!-- GWA Percentile and Expected Graduation Date -->
-            <div class="row mb-3">
-              <div class="col">
-                <label for="gwaPercentile" class="form-label">GWA Percentile</label>
-                <input type="number" class="form-control" id="gwaPercentile" placeholder="Enter GWA percentile" required>
-              </div>
-              <div class="col">
-                <label for="expectedGraduationDate" class="form-label">Expected Graduation Date</label>
-                <input type="date" class="form-control" id="expectedGraduationDate" required>
-              </div>
-            </div>
-
-            <!-- School Name and Department in horizontal alignment -->
-            <div class="row mb-3">
-              <div class="col">
-                <label for="schoolName" class="form-label">School Name</label>
-                <input type="text" class="form-control" id="schoolName" placeholder="Enter school name" required>
-              </div>
-              <div class="col">
-                <label for="department" class="form-label">Department</label>
-                <input type="text" class="form-control" id="department" placeholder="Enter department" required>
-              </div>
-            </div>
-
-            <!-- Password and Confirm Password in horizontal alignment -->
-            <div class="row mb-3">
-              <div class="col">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password" required>
-              </div>
           
-            </div>
+          </div>
+        </div>
 
-            <!-- Register Button -->
-            <div class="d-grid">
-              <button type="submit" class="btn btn-primary btn-block">Register</button>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gwaPercentile">GWA Percentile</label>
+            <input type="number" id="gwaPercentile" [(ngModel)]="user.gwaPercentile" name="gwaPercentile"#gwaPercentile="ngModel" placeholder="Enter GWA percentile" required (ngModelChange)="onGwaChange(gwaPercentile.control)">
+            <div  class="error-message" *ngIf="gwaPercentile.invalid && (gwaPercentile.dirty || gwaPercentile.touched)">
+              <div *ngIf="gwaPercentile.errors?.['required']">GWA Percentile is required.</div>
+              <div *ngIf="gwaPercentile.errors?.['invalidGwa']">GWA must be between 50 and 100.</div>
             </div>
-          </form>
+          
+          </div>
+
+          <div class="form-group">
+            <label for="expectedGraduationDate">Expected Graduation Date</label>
+            <input type="date" id="expectedGraduationDate" [(ngModel)]="user.expectedGraduationDate" name="expectedGraduationDate" required>
+          </div>
         </div>
-        <div class="card-footer text-center">
-          <small>Already have an account? <a href="login">Login here</a></small>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="schoolName">School Name</label>
+            <input type="text" id="schoolName" [(ngModel)]="user.schoolName" name="schoolName" #schoolName="ngModel"placeholder="Enter school name" required pattern="^[A-Za-z]+( [A-Za-z]+){0,5}$">
+            <div  class="error-message" *ngIf="schoolName.invalid && (schoolName.dirty || schoolName.touched)">
+              <div *ngIf="schoolName.errors?.['required']">School name is required.</div>
+              <div *ngIf="schoolName.errors?.['pattern']">School name can only contain letters and allow up to 5 spaces.</div>
+            </div>
+          
+          </div>
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" [(ngModel)]="user.department" name="department"#department="ngModel" placeholder="Enter department" required pattern="^[A-Za-z]+( [A-Za-z]+){0,5}$">
+            <div  class="error-message" *ngIf="department.invalid && (department.dirty ||department.touched)">
+              <div *ngIf="department.errors?.['required']">Department is required.</div>
+              <div *ngIf="department.errors?.['pattern']">Departmentname can only contain letters and allow up to 5 spaces.</div>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" [(ngModel)]="user.password" name="password" placeholder="Enter password" required>
+          </div>
+        </div>
+
+        <!-- Register Button -->
+        <div class="form-group">
+          <button type="submit" class="btn">Register</button>
+        </div>
+      </form>
+    </div>
+    <div class="form-footer">
+      <small>Already have an account? <a href="login">Login here</a></small>
     </div>
   </div>
 </div>

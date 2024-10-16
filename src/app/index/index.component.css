@@ -1,0 +1,146 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/assets/index.avif');
+    background-position: center; 
+    background-repeat: no-repeat; 
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container styling */
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 60%;
+}
+
+/* Heading styling */
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+.button-group {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 10px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 7px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Scholarship Notes Section */
+.scholarship-notes {
+    margin-top: 30px;
+}
+
+/* Individual note box styling */
+.note-box {
+    background-color: #f8f9fa;
+    border-left: 5px solid #007bff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: left;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Bold part of the note */
+.note-box strong {
+    font-weight: bold;
+    color: #007bff;
+}
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/assets/index.avif'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Heading styling */
+h1 {
+    font-size: 2.5rem;
+    color: rgb(11, 10, 10);
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Button styling */
+.button-group {
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #154e8a;
+}
+
+/* Scholarship Notes Section */
+.scholarship-notes {
+    margin-top: 40px;
+    width: 80%; /* Ensure the notes are not too wide */
+}
+
+/* Individual note box styling */
+.note-box {
+    background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+    border-left: 6px solid #007bff;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+    color: #333;
+    text-align: left;
+    font-size: 1rem;
+    width: 1000px;
+}
+
+/* Bold part of the note */
+.note-box strong {
+    font-weight: bold;
+    color: #007bff;
+}

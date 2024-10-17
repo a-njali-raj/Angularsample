@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { AbstractControl, FormsModule } from '@angular/forms';
+import { AbstractControl, FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router'; // Import Router
 import { UserService } from '../../services/user.service'; // Adjust the path as necessary
 import { User } from '../../model/user';
-import { NgForm } from '@angular/forms'; 
-import { HttpErrorResponse,HttpResponse } from '@angular/common/http';// Import the User model (adjust path as necessary)
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +33,7 @@ export class RegisterComponent {
     password: ''
   };
 
-  constructor(private userService: UserService) {} // Injecting UserService
+  constructor(private userService: UserService, private router: Router) {} // Injecting UserService and Router
 
   validateGwaPercentile(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
@@ -48,7 +48,6 @@ export class RegisterComponent {
     control.updateValueAndValidity(); 
   }
 
-  
   onSubmit(f: NgForm) {
     if (f.valid) {
       this.userService.register(this.user).subscribe(
@@ -56,30 +55,56 @@ export class RegisterComponent {
           if (response.body && response.body.message) {
             console.log('Toaster should show success');
             this.showToasterMessage(response.body.message, 'success');
+            this.resetForm(f);
+            this.router.navigate(['/login']); // Redirecting to the login page
           }
         },
         (error: HttpErrorResponse) => {
           if (error.error && error.error.error) {
             console.log('Toaster should show error');
             this.showToasterMessage(error.error.error, 'error');
+            this.resetForm(f);
           }
         }
       );
     }
   }
-  
+
   showToaster: boolean = false;
   toasterMessage: string = '';
   toasterType: string = '';
+
   // Toaster display logic
   showToasterMessage(message: string, type: string) {
     this.toasterMessage = message;
     this.toasterType = type;
     this.showToaster = true;
-  
+
     // Hide the toaster after 3 seconds
     setTimeout(() => {
       this.showToaster = false;
     }, 3000);
   }
-}  
+
+  resetForm(f: NgForm) {
+    f.resetForm(); // Reset the form controls
+    this.user = { // Resetting the user object
+      fname: '',
+      lname: '',
+      email: '',
+      phonenumber: '',
+      dob: '',
+      addressLine: '',
+      city: '',
+      state: '',
+      postalCode: '',
+      gradeOrYearLevel: '',
+      gpaScore: '',
+      gwaPercentile: '',
+      expectedGraduationDate: '',
+      schoolName: '',
+      department: '',
+      password: ''
+    };
+  }
+}

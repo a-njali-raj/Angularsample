@@ -101,3 +101,35 @@
 .form-footer a:hover {
   text-decoration: underline;
 }
+.toaster {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 25px;
+  border-radius: 5px;
+  background-color: #4caf50; /* Default to success */
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.toaster.success {
+  background-color: #4caf50;
+}
+
+.toaster.error {
+  background-color: #f44336;
+}
+
+.toaster.hidden {
+  opacity: 0;
+}
+.error-message {
+  color: red;
+  font-size: 0.875rem; 
+  margin-top: 5px;     
+}

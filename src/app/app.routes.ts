@@ -7,6 +7,7 @@ import { IndexComponent } from './index/index.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
 
+
 export const routes: Routes = [
     {
         path:'',
@@ -30,7 +31,8 @@ export const routes: Routes = [
     },
     {
         path:'resetpassword',component:ResetpasswordComponent
-    }
+    },
+ 
    
 
 ];

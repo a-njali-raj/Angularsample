@@ -43,6 +43,8 @@ export class LoginComponent implements OnInit {
           console.log('Login successful', response);
           if (response && response.message && response.status === 200) {
             this.userService.markUserAsLoggedIn();
+            
+            this.userService.setUserFirstName(response.fname); 
             this.router.navigate(['/welcome']); 
           } else {
             this.showToasterMessage('Unexpected response from server.', false);
@@ -56,7 +58,7 @@ export class LoginComponent implements OnInit {
       );
     }
   }
-
+  
   showToasterMessage(message: string, success: boolean) {
     this.toasterMessage = message;
     this.isSuccess = success;

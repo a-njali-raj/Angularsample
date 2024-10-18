@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
+  userFirstName: string = '';  // Variable to hold user's first name
+
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     // Check if the user is logged in
     if (!this.userService.getLoginState()) {
       this.router.navigate(['/login']); // Redirect to login if not logged in
+    } else {
+      // Get the logged-in user's first name
+      this.userFirstName = this.userService.getUserFirstName();
     }
   }
 

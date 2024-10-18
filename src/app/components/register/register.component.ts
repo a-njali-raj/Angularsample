@@ -9,12 +9,12 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule], 
+  imports: [FormsModule, CommonModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'] 
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  user: User = { 
+  user: User = {
     fname: '',
     lname: '',
     email: '',
@@ -33,19 +33,19 @@ export class RegisterComponent {
     password: ''
   };
 
-  constructor(private userService: UserService, private router: Router) {} 
+  constructor(private userService: UserService, private router: Router) {}
 
   validateGwaPercentile(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
-    if (value !== null && value !== undefined && (value < 50 || value > 100)) {
-      return { 'invalidGwa': true };
+    if (value < 50 || value > 100) {
+      return { invalidGwa: true };
     }
-    return null; 
+    return null;
   }
 
   onGwaChange(control: AbstractControl): void {
     control.setValidators([this.validateGwaPercentile]);
-    control.updateValueAndValidity(); 
+    control.updateValueAndValidity();
   }
 
   onSubmit(f: NgForm) {
@@ -53,7 +53,6 @@ export class RegisterComponent {
       this.userService.register(this.user).subscribe(
         (response: HttpResponse<any>) => {
           if (response.body && response.body.message) {
-            console.log('Toaster should show success');
             this.showToasterMessage(response.body.message, 'success');
             this.resetForm(f);
             this.router.navigate(['/login']);
@@ -61,7 +60,6 @@ export class RegisterComponent {
         },
         (error: HttpErrorResponse) => {
           if (error.error && error.error.error) {
-            console.log('Toaster should show error');
             this.showToasterMessage(error.error.error, 'error');
             this.resetForm(f);
           }
@@ -70,25 +68,22 @@ export class RegisterComponent {
     }
   }
 
-  showToaster: boolean = false;
-  toasterMessage: string = '';
-  toasterType: string = '';
+  showToaster = false;
+  toasterMessage = '';
+  toasterType = '';
 
-  // Toaster display logic
   showToasterMessage(message: string, type: string) {
     this.toasterMessage = message;
     this.toasterType = type;
     this.showToaster = true;
-
-    
     setTimeout(() => {
       this.showToaster = false;
     }, 3000);
   }
 
   resetForm(f: NgForm) {
-    f.resetForm(); 
-    this.user = { 
+    f.resetForm();
+    this.user = {
       fname: '',
       lname: '',
       email: '',
@@ -107,6 +102,4 @@ export class RegisterComponent {
       password: ''
     };
   }
-  
-  
 }

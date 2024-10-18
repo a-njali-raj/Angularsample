@@ -11,6 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class UserService {
   private loggedIn = false;
   private baseUrl = 'http://localhost:8080/api/users';
+  private userFirstName: string = '';
   constructor(private http: HttpClient) {}
   register(user: User): Observable<any> {
     return this.http.post(`${this.baseUrl}/register`, user, {
@@ -46,7 +47,7 @@ export class UserService {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           if (error.status === 404) {
-         
+          
             console.error('User not found with the provided email address.');
           }
           return throwError(error);
@@ -88,5 +89,14 @@ export class UserService {
   getLoginState(): boolean {
     return this.loggedIn;
   }
+  setUserFirstName(fname: string) {
+    this.userFirstName = fname;
+  }
+
+ 
+  getUserFirstName(): string {
+    return this.userFirstName;
+  }
+  
 }
 

@@ -15,6 +15,8 @@ import { CommonModule } from '@angular/common';
 export class ForgotpasswordComponent {
   email: string = '';
   message: string = '';
+  showMessage: boolean = false; 
+  messageType: 'success' | 'error' = 'success'; 
 
   constructor(private http: HttpClient) {}
 
@@ -24,10 +26,16 @@ export class ForgotpasswordComponent {
         (response: any) => {
           console.log('Success response:', response);
           this.message = response.message || 'Password reset link has been sent.';
+          this.messageType = 'success'; 
+          this.showMessage = true;
+          this.hideMessageAfterDelay(); 
         },
         (error: any) => {
           console.error('Forgot Password Error:', error);
-          this.message = this.getErrorMessage(error); 
+          this.message = this.getErrorMessage(error);
+          this.messageType = 'error'; 
+          this.showMessage = true; 
+          this.hideMessageAfterDelay(); 
         }
       );
     }
@@ -59,5 +67,12 @@ export class ForgotpasswordComponent {
     } else {
       return 'An unexpected error occurred'; 
     }
+  }
+
+  
+  private hideMessageAfterDelay() {
+    setTimeout(() => {
+      this.showMessage = false;
+    }, 4000); 
   }
 }

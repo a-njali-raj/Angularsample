@@ -6,6 +6,8 @@ import { LoginComponent } from './components/login/login.component';
 import { IndexComponent } from './index/index.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/resetpassword/resetpassword.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+
 
 
 export const routes: Routes = [
@@ -32,7 +34,10 @@ export const routes: Routes = [
     {
         path:'resetpassword',component:ResetpasswordComponent
     },
- 
+    {
+        path:'welcome',component:WelcomeComponent
+    },
+   
    
 
 ];

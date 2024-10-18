@@ -1,20 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormsModule, NgForm } from '@angular/forms';
-import { Router } from '@angular/router'; // Import Router
-import { UserService } from '../../services/user.service'; // Adjust the path as necessary
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 import { User } from '../../model/user';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, CommonModule], // Importing FormsModule for two-way data binding
+  imports: [FormsModule, CommonModule], 
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'] // Corrected 'styleUrl' to 'styleUrls'
+  styleUrls: ['./register.component.css'] 
 })
 export class RegisterComponent {
-  user: User = { // Creating user object with fields for saving in database
+  user: User = { 
     fname: '',
     lname: '',
     email: '',
@@ -33,7 +33,7 @@ export class RegisterComponent {
     password: ''
   };
 
-  constructor(private userService: UserService, private router: Router) {} // Injecting UserService and Router
+  constructor(private userService: UserService, private router: Router) {} 
 
   validateGwaPercentile(control: AbstractControl): { [key: string]: boolean } | null {
     const value = control.value;
@@ -56,7 +56,7 @@ export class RegisterComponent {
             console.log('Toaster should show success');
             this.showToasterMessage(response.body.message, 'success');
             this.resetForm(f);
-            this.router.navigate(['/login']); // Redirecting to the login page
+            this.router.navigate(['/login']);
           }
         },
         (error: HttpErrorResponse) => {
@@ -80,15 +80,15 @@ export class RegisterComponent {
     this.toasterType = type;
     this.showToaster = true;
 
-    // Hide the toaster after 3 seconds
+    
     setTimeout(() => {
       this.showToaster = false;
     }, 3000);
   }
 
   resetForm(f: NgForm) {
-    f.resetForm(); // Reset the form controls
-    this.user = { // Resetting the user object
+    f.resetForm(); 
+    this.user = { 
       fname: '',
       lname: '',
       email: '',
@@ -107,4 +107,6 @@ export class RegisterComponent {
       password: ''
     };
   }
+  
+  
 }

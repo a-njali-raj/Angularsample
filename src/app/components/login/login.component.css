@@ -1,14 +1,13 @@
 
 
 .container {
-  /* background-image: url('/assets/scholarship.jpg');
-  background-size: cover; 
-  background-position: center; 
-  background-repeat: no-repeat;  */
-  width: 100%;
+ 
+  width: 100vw; /* Set width to viewport width */
+  height: 100vh; /* Ensure full height of the viewport */
   padding: 10px;
   display: flex;
   justify-content: center;
+  overflow: hidden; /* Prevent overflow if needed */
 }
 
 
@@ -20,7 +19,7 @@
 
 
 .form-card {
-  background-color: rgba(255, 255, 255, 0.932);
+  background-image: url('/assets/login.jpg');
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   padding: 20px;
@@ -90,11 +89,13 @@
 }
 
 .form-footer small {
-  color: #555;
+  color: #0d0c0c;
+  font-weight:bold;
+  font-size: medium;
 }
 
 .form-footer a {
-  color: #007bff;
+  color: #084c93;
   text-decoration: none;
 }
 
@@ -118,7 +119,7 @@
 }
 
 .toaster.success {
-  background-color: #4caf50;
+  background-color: #218924b0;
 }
 
 .toaster.error {
@@ -132,4 +133,11 @@
   color: red;
   font-size: 0.875rem; 
   margin-top: 5px;     
+}
+.background {
+  background-image: url('/assets/loginback.jpg');
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center; 
 }

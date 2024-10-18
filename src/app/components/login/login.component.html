@@ -1,3 +1,4 @@
+<div class="background">
 <div class="container">
   <div class="form-wrapper">
     <div class="form-card">
@@ -37,8 +38,8 @@
   </div>
 </div>
 
-<!-- Toaster Message -->
-<!-- Toaster Message -->
 <div *ngIf="showToaster" class="toaster" [ngClass]="{ 'success': isSuccess, 'error': !isSuccess }">
   {{ toasterMessage }}
+</div>
+
 </div>

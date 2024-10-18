@@ -4,26 +4,46 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #f0f4f8;
+
   padding: 20px;
- 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  
+  display: flex;
+  width: 1200px;
 }
 
 
 .form-card {
-  background-color: white;
+  background-image: url('/assets/login.jpg');
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 800px;
   padding: 20px;
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
 }
 
 
 .form-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  color: #0b6fda; 
+  font-size: 2rem; 
+  font-weight: 700; 
+  font-family: 'Arial', sans-serif; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); 
+  letter-spacing: 1px; 
+  text-transform: uppercase;
+  padding: 10px 0; 
+  background: linear-gradient(to right, #202021, #1e90ff); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
 }
+
 
 .form-header h3 {
   margin: 0;
@@ -42,7 +62,13 @@
 
 .form-group {
   margin-bottom: 15px;
+
+  align-items: center; 
 }
+.button-container {
+  display: flex;             
+  justify-content: center;  
+  margin-top: 20px;         }
 
 .form-group label {
   display: block;
@@ -66,14 +92,14 @@
 
 
 .btn {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
+  width: 180px;
   background-color: #007bff;
   color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .btn:hover {
@@ -81,7 +107,9 @@
 }
 
 .form-footer {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
 
@@ -131,9 +159,16 @@
 }
 
 .toaster.error {
-  background-color: #f44336; /* Error */
+  background-color: #eb574cbb; /* Error */
 }
 
 .toaster.success {
-  background-color: #4caf50; /* Success */
+  background-color: #6ac46da5; /* Success */
+}
+.background {
+  background-image: url('/assets/forgot.jpg');
+  min-height: 100vh; /* Ensure it covers the full height of the viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center content vertically if needed */
 }

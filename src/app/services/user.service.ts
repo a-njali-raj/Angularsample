@@ -9,7 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
-
+  private loggedIn = false;
   private baseUrl = 'http://localhost:8080/api/users';
   constructor(private http: HttpClient) {}
   register(user: User): Observable<any> {
@@ -30,6 +30,7 @@ export class UserService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json' 
       })
+      
     }).pipe(
       catchError(err => {
         console.error('Login Error:', err);
@@ -74,4 +75,18 @@ export class UserService {
       return `Error ${err.status}: ${err.message || 'Unknown error'}`;
     }
   }
+  markUserAsLoggedIn() {
+    this.loggedIn = true;
+  }
+
+
+  clearUserData() {
+    this.loggedIn = false;
+  }
+
+ 
+  getLoginState(): boolean {
+    return this.loggedIn;
+  }
 }
+

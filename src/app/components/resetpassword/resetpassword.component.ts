@@ -29,8 +29,8 @@ export class ResetpasswordComponent implements OnInit {
     this.resetPassword(this.token, this.newPassword).subscribe(
       (response: any) => {
         this.message = response; 
-     
-        this.router.navigate(['/login']);
+      
+        this.router.navigate(['/login'], { queryParams: { reset: 'success' } });
       },
       (error: any) => {
         console.error('Reset Password Error:', error);
@@ -38,6 +38,7 @@ export class ResetpasswordComponent implements OnInit {
       }
     );
   }
+  
 
   resetPassword(token: string, newPassword: string) {
     return this.http.post('http://localhost:8080/api/users/resetpassword', { resetPasswordToken: token, newPassword }, {

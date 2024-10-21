@@ -1,5 +1,9 @@
 <div class="welcome-container">
-   <h1>Welcome, {{ userFirstName }}!</h1>
-    <button (click)="logout()" class="logout-button">Logout</button>
+  <h1>Welcome, {{ userFirstName }}!</h1>
+  <button (click)="logout()" class="logout-button">Logout</button>
+
+  <!-- Toaster Message -->
+  <div *ngIf="showToaster" class="toaster" [ngClass]="{'success': isSuccess, 'error': !isSuccess}">
+    {{ toasterMessage }}
   </div>
-  
+</div>

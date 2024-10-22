@@ -53,6 +53,7 @@ export class RegisterComponent {
       this.userService.register(this.user).subscribe(
         (response: HttpResponse<any>) => {
           if (response.body && response.body.message) {
+            console.log('Registration successful:', response.body.message);
             this.showToasterMessage(response.body.message, 'success');
             this.resetForm(f);
             this.router.navigate(['/login']);

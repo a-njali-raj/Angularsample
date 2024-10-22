@@ -26,21 +26,19 @@ export class UserService {
       })
     );
   }
-  login(user: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, user, {
+  login(user: { email: string, password: string }): Observable<any> {
+    return this.http.post('http://localhost:8080/api/users/login', user, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json' 
-      })
-      
+        'Content-Type': 'application/json',
+      }),
     }).pipe(
-      catchError(err => {
-        console.error('Login Error:', err);
-        return throwError(this.getErrorMessage(err));
+      catchError((error: any) => {
+        console.error('Login service error', error);
+        return throwError(error); // Re-throw the error to be handled in the component
       })
     );
   }
-
-
+  
 
   forgotPassword(email: string): Observable<any> {
     return this.http.post('http://localhost:8080/api/users/forgotpassword', { email })
@@ -97,6 +95,7 @@ export class UserService {
   getUserFirstName(): string {
     return this.userFirstName;
   }
+  
   
 }
 

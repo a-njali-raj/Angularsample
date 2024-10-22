@@ -41,19 +41,39 @@ export class LoginComponent implements OnInit {
       this.userService.login(this.user).subscribe(
         (response: any) => {
           console.log('Login successful', response);
-          if (response && response.message && response.status === 200) {
+          if (response && response.status === 200) {
             this.userService.markUserAsLoggedIn();
-            
-            this.userService.setUserFirstName(response.fname); 
-            this.router.navigate(['/welcome']); 
+            this.userService.setUserFirstName(response.fname);
+            this.router.navigate(['/welcome']);
           } else {
             this.showToasterMessage('Unexpected response from server.', false);
           }
         },
         (error: any) => {
           console.error('Login error:', error);
-          this.showToasterMessage(error.error?.error || 'An unknown error occurred.', false);
-          this.loginError = error.error?.error || 'An unknown error occurred.';
+  
+          if (error.error && error.error.error) {
+            const errorMessage = error.error.error;
+  
+          
+            if (errorMessage.includes('Invalid email') && errorMessage.includes('Incorrect password')) {
+              this.showToasterMessage('Invalid email and password.', false);
+            } else if (errorMessage.includes('Invalid email')) {
+              this.showToasterMessage('Invalid email address.', false);
+            } else if (errorMessage.includes('Incorrect password')) {
+              this.showToasterMessage('Incorrect password.', false);
+            } else {
+              this.showToasterMessage(errorMessage, false);
+            }
+          } else if (error.status === 401) {
+           
+            this.showToasterMessage('Invalid email or password.', false);
+          } else {
+           
+            this.showToasterMessage('An unknown error occurred. Please try again.', false);
+          }
+  
+         
         }
       );
     }
@@ -63,9 +83,9 @@ export class LoginComponent implements OnInit {
     this.toasterMessage = message;
     this.isSuccess = success;
     this.showToaster = true;
-
+  
     setTimeout(() => {
       this.showToaster = false;
-    }, 3000);
+    }, 3000); 
   }
-}
+}  
